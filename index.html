@@ -1,0 +1,2732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>NajMel HQ | Employee Directory</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  /* === Modern Blue Theme - Enhanced === */
+  :root{
+    --primary: #2563eb;
+    --primary-light: #3b82f6;
+    --primary-dark: #1d4ed8;
+    --secondary: #8b5cf6;
+    --accent: #06b6d4;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --light: #f8fafc;
+    --dark: #1e293b;
+    --muted: #64748b;
+    --card-bg: #ffffff;
+    --sidebar-bg: #1e293b;
+    --gradient-primary: linear-gradient(135deg, var(--primary), var(--secondary));
+    --gradient-accent: linear-gradient(135deg, var(--accent), var(--primary-light));
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
+    --shadow-lg: 0 10px 40px rgba(0,0,0,0.12);
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+  }
+
+  *{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body{
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #f0f9ff 0%, #fefefe 100%);
+    color: var(--dark);
+    min-height: 100vh;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: var(--dark);
+  }
+
+  h2 { font-size: 1.8rem; margin-bottom: 1.5rem; }
+  h3 { font-size: 1.4rem; margin-bottom: 1rem; }
+  h4 { font-size: 1.2rem; margin-bottom: 0.75rem; }
+
+  label{
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--muted);
+  }
+
+  input, select, textarea {
+    width: 100%;
+    padding: 14px 16px;
+    margin-bottom: 1rem;
+    border-radius: var(--radius-sm);
+    border: 2px solid #e2e8f0;
+    background: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    transition: all 0.25s ease;
+    outline: none;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    transform: translateY(-1px);
+  }
+
+  /* Enhanced Navbar */
+  .navbar {
+    background: var(--sidebar-bg);
+    padding: 0 2rem;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    box-shadow: var(--shadow-md);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .brand i {
+    color: var(--accent);
+    font-size: 1.6rem;
+  }
+
+  .nav-area {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .nav-btn {
+    cursor: pointer;
+    padding: 10px 18px;
+    border-radius: var(--radius-sm);
+    transition: all 0.25s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.08);
+    border: none;
+    color: #e2e8f0;
+  }
+
+  .nav-btn:hover {
+    background: rgba(255,255,255,0.15);
+    transform: translateY(-2px);
+    color: white;
+  }
+
+  .clock {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #94a3b8;
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.05);
+    border-radius: var(--radius-sm);
+    min-width: 100px;
+    text-align: center;
+  }
+
+  /* Clean Admin Profile in Navbar */
+  .admin-nav-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    background: rgba(255,255,255,0.08);
+    transition: all 0.25s ease;
+  }
+
+  .admin-nav-profile:hover {
+    background: rgba(255,255,255,0.12);
+  }
+
+  .admin-nav-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--gradient-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .admin-nav-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .admin-nav-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: white;
+  }
+
+  .admin-nav-role {
+    font-size: 0.75rem;
+    color: #94a3b8;
+  }
+
+  /* Layout & Cards */
+  .container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .card {
+    background: var(--card-bg);
+    padding: 1.75rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(226, 232, 240, 0.6);
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-light);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 24px;
+    border-radius: var(--radius-sm);
+    border: none;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    text-decoration: none;
+  }
+
+  .btn-primary {
+    background: var(--gradient-primary);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+  }
+
+  .btn-outline:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  .btn-sm {
+    padding: 10px 16px;
+    font-size: 0.85rem;
+  }
+
+  .btn-icon {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .flex {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    align-items: stretch;
+  }
+
+  .col {
+    flex: 1 1 calc(33.333% - 1.5rem);
+    min-width: 280px;
+  }
+
+  /* Dashboard Stats */
+  .stat-card {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+  }
+
+  .stat-card h3 {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .stat-card .stat-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 0.5rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Employee Cards */
+  .employee-card {
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+  }
+
+  .employee-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-light);
+  }
+
+  .employee-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+
+  .employee-card h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .employee-position {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .employee-dept {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--primary);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .employee-card .actions {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .employee-card button {
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+  }
+
+  .edit-btn {
+    background: var(--primary);
+    color: white;
+  }
+
+  .edit-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+  }
+
+  .delete-btn {
+    background: #fee2e2;
+    color: var(--danger);
+  }
+
+  .delete-btn:hover {
+    background: var(--danger);
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  /* Attendance Styles */
+  .attendance-record {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-sm);
+    margin-bottom: 0.75rem;
+    background: #f8fafc;
+    transition: all 0.2s ease;
+  }
+
+  .attendance-record:hover {
+    background: #f1f5f9;
+    transform: translateX(5px);
+  }
+
+  .status-badge {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .status-present {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--success);
+  }
+
+  .status-absent {
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--danger);
+  }
+
+  .status-late {
+    background: rgba(245, 158, 11, 0.15);
+    color: var(--warning);
+  }
+
+  .status-leave {
+    background: rgba(100, 116, 139, 0.15);
+    color: var(--muted);
+  }
+
+  .attendance-summary {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .summary-box {
+    flex: 1;
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    text-align: center;
+    background: white;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+  }
+
+  .summary-box:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .summary-box h4 {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .summary-value {
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 1rem;
+  }
+
+  th {
+    background: #f1f5f9;
+    padding: 1rem 1.25rem;
+    text-align: left;
+    color: var(--dark);
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-bottom: 2px solid #e2e8f0;
+  }
+
+  td {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  tr:hover {
+    background: #f8fafc;
+  }
+
+  /* Date Picker */
+  .date-picker {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .date-picker input {
+    width: auto;
+    min-width: 160px;
+  }
+
+  /* Report Cards */
+  .report-card {
+    padding: 1.5rem;
+    border-left: 4px solid var(--primary);
+    margin-bottom: 1rem;
+    background: #f8fafc;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Hidden pages */
+  .hidden {
+    display: none !important;
+  }
+
+  /* Footer */
+  footer {
+    background: var(--sidebar-bg);
+    color: #94a3b8;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 3rem;
+    font-size: 0.85rem;
+  }
+
+  footer a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  /* Login/Register Pages */
+  .auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 70px);
+    padding: 2rem;
+  }
+
+  .auth-card {
+    width: 100%;
+    max-width: 480px;
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    background: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .auth-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: var(--gradient-primary);
+  }
+
+  .auth-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .auth-header h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .auth-header p {
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  /* Search Bar */
+  .search-container {
+    position: relative;
+    flex: 1;
+    max-width: 400px;
+  }
+
+  .search-input {
+    padding-left: 3rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 1rem center;
+  }
+
+  /* Page Header */
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .col {
+      flex: 1 1 calc(50% - 1.5rem);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .navbar {
+      padding: 0 1rem;
+    }
+    
+    .nav-links {
+      gap: 0.25rem;
+    }
+    
+    .nav-btn span {
+      display: none;
+    }
+    
+    .nav-btn i {
+      margin-right: 0;
+    }
+    
+    .admin-nav-info {
+      display: none;
+    }
+    
+    .container {
+      padding: 1.5rem 1rem;
+    }
+    
+    .col {
+      flex: 1 1 100%;
+    }
+    
+    .attendance-summary {
+      flex-wrap: wrap;
+    }
+    
+    .summary-box {
+      flex: 1 1 calc(50% - 0.5rem);
+      min-width: 140px;
+    }
+    
+    .page-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .brand span {
+      font-size: 1.1rem;
+    }
+    
+    .clock {
+      display: none;
+    }
+    
+    .auth-card {
+      padding: 2rem 1.5rem;
+    }
+    
+    .summary-box {
+      flex: 1 1 100%;
+    }
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    animation: fadeIn 0.5s ease forwards;
+  }
+
+  /* Badges */
+  .badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .badge-primary {
+    background: rgba(37, 99, 235, 0.15);
+    color: var(--primary);
+  }
+
+  .badge-success {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--success);
+  }
+
+  /* Empty States */
+  .empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--muted);
+  }
+
+  .empty-state i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #cbd5e1;
+  }
+
+  /* Pagination */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+  }
+
+  .page-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    border: 2px solid #e2e8f0;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  .page-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+
+  .page-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="brand">
+    <i class="fas fa-building"></i>
+    <span>NajMel HQ Dashboard</span>
+  </div>
+
+  <div class="nav-area">
+    <div id="navLinks" class="nav-links hidden">
+      <div class="admin-nav-profile">
+        <div class="admin-nav-avatar" id="adminAvatar">M</div>
+        <div class="admin-nav-info">
+          <div class="admin-nav-name" id="adminName">Muhd Najwan</div>
+          <div class="admin-nav-role">HR Manager</div>
+        </div>
+      </div>
+      <button class="nav-btn" onclick="showPage('dashboardPage')">
+        <i class="fas fa-chart-line"></i>
+        <span>Dashboard</span>
+      </button>
+      <button class="nav-btn" onclick="showPage('employeeListPage')">
+        <i class="fas fa-users"></i>
+        <span>Employees</span>
+      </button>
+      <button class="nav-btn" onclick="showPage('attendancePage')">
+        <i class="fas fa-calendar-check"></i>
+        <span>Attendance</span>
+      </button>
+      <button class="nav-btn" onclick="showPage('reportsPage')">
+        <i class="fas fa-chart-pie"></i>
+        <span>Reports</span>
+      </button>
+      <button class="nav-btn" onclick="logout()">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span>
+      </button>
+    </div>
+    <div class="clock" id="clock">00:00:00</div>
+  </div>
+</div>
+
+<!-- LOGIN PAGE -->
+<div id="loginPage" class="auth-container">
+  <div class="auth-card fade-in">
+    <div class="auth-header">
+      <h2>Welcome to NajMel HQ</h2>
+      <p>HR Management System - Login</p>
+    </div>
+    
+    <div class="card" style="border: none; box-shadow: none; padding: 0;">
+      <label for="loginUser">
+        <i class="fas fa-user" style="margin-right: 8px;"></i> Username
+      </label>
+      <input type="text" id="loginUser" placeholder="Enter your username">
+      
+      <label for="loginPass">
+        <i class="fas fa-lock" style="margin-right: 8px;"></i> Password
+      </label>
+      <input type="password" id="loginPass" placeholder="Enter your password">
+      
+      <button class="btn btn-primary" onclick="login()" style="width: 100%; margin-top: 1rem;">
+        <i class="fas fa-sign-in-alt"></i> Login to Dashboard
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- DASHBOARD PAGE -->
+<div id="dashboardPage" class="container hidden">
+  <div class="page-header">
+    <div>
+      <h2>HR Dashboard Overview</h2>
+      <p style="color: var(--muted);">Welcome back, <span id="greetingName">Admin</span>!</p>
+    </div>
+    <div class="date-picker">
+      <span class="badge badge-primary" id="currentDate"></span>
+    </div>
+  </div>
+  
+  <div class="card">
+    <div class="card-header">
+      <h3 style="margin: 0;">Your Admin Profile</h3>
+      <span class="badge badge-success">HR Manager</span>
+    </div>
+    <div class="flex">
+      <div class="col">
+        <div style="display: flex; align-items: center; gap: 1.5rem;">
+          <div class="admin-nav-avatar" style="width: 80px; height: 80px; font-size: 2rem;" id="dashboardAdminAvatar">M</div>
+          <div>
+            <h3 id="dashboardAdminName">Muhd Najwan</h3>
+            <p style="color: var(--muted); margin-bottom: 0.5rem;">
+              <i class="fas fa-user-tie" style="margin-right: 8px;"></i> HR Manager
+            </p>
+            <p style="color: var(--muted); font-size: 0.9rem;">
+              <i class="fas fa-envelope" style="margin-right: 8px;"></i> <span id="dashboardAdminEmail">hrnajwan@najmel.com</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div style="background: #f8fafc; padding: 1.5rem; border-radius: var(--radius-md);">
+          <h4 style="margin-bottom: 1rem;">Personal Information</h4>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div>
+              <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 0.25rem;">Age</p>
+              <p style="font-weight: 600;" id="dashboardAdminAge">32 years</p>
+            </div>
+            <div>
+              <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 0.25rem;">Location</p>
+              <p style="font-weight: 600;" id="dashboardAdminLocation">Kuala Lumpur</p>
+            </div>
+            <div style="grid-column: span 2;">
+              <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 0.25rem;">Address</p>
+              <p style="font-weight: 600;" id="dashboardAdminAddress">No 31, Jalan Mont Kiara 2/1</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="flex">
+    <div class="col">
+      <div class="card stat-card">
+        <h3><i class="fas fa-users" style="margin-right: 8px;"></i> Total Employees</h3>
+        <div class="stat-value" id="totalEmployees">0</div>
+        <p style="color: var(--muted); font-size: 0.9rem;">Active workforce</p>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card stat-card">
+        <h3><i class="fas fa-building" style="margin-right: 8px;"></i> Departments</h3>
+        <div class="stat-value" id="totalDepartments">0</div>
+        <p style="color: var(--muted); font-size: 0.9rem;">Active departments</p>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card stat-card">
+        <h3><i class="fas fa-calendar-day" style="margin-right: 8px;"></i> Today's Attendance</h3>
+        <div class="stat-value" id="todayAttendance">0/0</div>
+        <p style="color: var(--muted); font-size: 0.9rem;">Present / Total</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="card" style="margin-top: 1.5rem;">
+    <div class="card-header">
+      <h3 style="margin: 0;">Recent Attendance</h3>
+      <button class="btn btn-sm btn-outline" onclick="showPage('attendancePage')">
+        <i class="fas fa-eye"></i> View All
+      </button>
+    </div>
+    <div id="recentAttendanceList" class="empty-state">
+      <i class="fas fa-clipboard-check"></i>
+      <p>No recent attendance records</p>
+    </div>
+  </div>
+</div>
+
+<!-- EMPLOYEE LIST PAGE -->
+<div id="employeeListPage" class="container hidden">
+  <div class="page-header">
+    <div>
+      <h2>Employee Directory</h2>
+      <p style="color: var(--muted);">Manage your organization's workforce</p>
+    </div>
+    <div style="display: flex; gap: 1rem; align-items: center;">
+      <div class="search-container">
+        <input id="searchEmp" type="text" class="search-input" placeholder="Search employees..." oninput="filterEmployees()">
+      </div>
+      <button class="btn btn-primary" onclick="showPage('addEmployeePage'); clearForm();">
+        <i class="fas fa-user-plus"></i> Add Employee
+      </button>
+    </div>
+  </div>
+
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+    <div>
+      <span class="badge badge-primary" id="employeeCount">0 Employees</span>
+      <span class="badge" id="storageInfo" style="margin-left: 0.5rem; background: rgba(16, 185, 129, 0.15); color: var(--success);">
+        <i class="fas fa-database"></i> Unlimited Storage
+      </span>
+    </div>
+    <div id="paginationContainer" class="pagination"></div>
+  </div>
+
+  <div id="employeeContainer" class="flex">
+    <!-- Employee cards will be dynamically inserted here -->
+  </div>
+
+  <div id="paginationFooter" class="pagination" style="margin-top: 2rem;"></div>
+</div>
+
+<!-- ADD/EDIT EMPLOYEE PAGE -->
+<div id="addEmployeePage" class="container hidden">
+  <div class="auth-card fade-in" style="max-width: 600px; margin: 0 auto;">
+    <div class="auth-header">
+      <h2 id="formTitle">Add New Employee</h2>
+      <p>Fill in the employee details below</p>
+    </div>
+    
+    <div class="card" style="border: none; box-shadow: none; padding: 0;">
+      <input type="hidden" id="empId">
+      
+      <div class="flex" style="gap: 1rem; margin-bottom: 1rem;">
+        <div style="flex: 1;">
+          <label for="empNameInput">
+            <i class="fas fa-user" style="margin-right: 8px;"></i> Full Name
+          </label>
+          <input type="text" id="empNameInput" placeholder="John Smith">
+        </div>
+        <div style="flex: 1;">
+          <label for="empPositionInput">
+            <i class="fas fa-briefcase" style="margin-right: 8px;"></i> Position
+          </label>
+          <input type="text" id="empPositionInput" placeholder="Software Engineer">
+        </div>
+      </div>
+      
+      <div class="flex" style="gap: 1rem; margin-bottom: 1rem;">
+        <div style="flex: 1;">
+          <label for="empDeptInput">
+            <i class="fas fa-building" style="margin-right: 8px;"></i> Department
+          </label>
+          <input type="text" id="empDeptInput" placeholder="IT Department">
+        </div>
+        <div style="flex: 1;">
+          <label for="empEmailInput">
+            <i class="fas fa-envelope" style="margin-right: 8px;"></i> Email
+          </label>
+          <input type="email" id="empEmailInput" placeholder="john@company.com">
+        </div>
+      </div>
+      
+      <div class="flex" style="gap: 1rem; margin-bottom: 1rem;">
+        <div style="flex: 1;">
+          <label for="empPhoneInput">
+            <i class="fas fa-phone" style="margin-right: 8px;"></i> Phone Number
+          </label>
+          <input type="text" id="empPhoneInput" placeholder="+1 (555) 123-4567">
+        </div>
+        <div style="flex: 1;">
+          <label for="empAgeInput">
+            <i class="fas fa-birthday-cake" style="margin-right: 8px;"></i> Age
+          </label>
+          <input type="number" id="empAgeInput" placeholder="30" min="18" max="70">
+        </div>
+      </div>
+      
+      <label for="empAddressInput">
+        <i class="fas fa-home" style="margin-right: 8px;"></i> Address
+      </label>
+      <textarea id="empAddressInput" placeholder="Full address" rows="3"></textarea>
+      
+      <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+        <button class="btn btn-primary" onclick="saveEmployee()" style="flex: 1;">
+          <i class="fas fa-save"></i> Save Employee
+        </button>
+        <button class="btn btn-outline" onclick="showPage('employeeListPage')" style="flex: 1;">
+          <i class="fas fa-times"></i> Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ATTENDANCE PAGE -->
+<div id="attendancePage" class="container hidden">
+  <div class="page-header">
+    <div>
+      <h2>Attendance Management</h2>
+      <p style="color: var(--muted);">Track and manage employee attendance</p>
+    </div>
+    <div class="date-picker">
+      <input type="date" id="attendanceDate" value="" style="max-width: 180px;">
+      <button class="btn btn-sm btn-primary" onclick="loadAttendanceForDate()">
+        <i class="fas fa-search"></i> Load Date
+      </button>
+      <button class="btn btn-sm btn-primary" onclick="showPage('markAttendancePage')">
+        <i class="fas fa-edit"></i> Mark Attendance
+      </button>
+    </div>
+  </div>
+  
+  <div class="attendance-summary">
+    <div class="summary-box">
+      <h4>Present Today</h4>
+      <div class="summary-value" id="presentCount" style="color: var(--success);">0</div>
+    </div>
+    <div class="summary-box">
+      <h4>Absent Today</h4>
+      <div class="summary-value" id="absentCount" style="color: var(--danger);">0</div>
+    </div>
+    <div class="summary-box">
+      <h4>Late Today</h4>
+      <div class="summary-value" id="lateCount" style="color: var(--warning);">0</div>
+    </div>
+    <div class="summary-box">
+      <h4>Attendance Rate</h4>
+      <div class="summary-value" id="attendanceRate" style="color: var(--primary);">0%</div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <div class="card-header">
+      <h3 style="margin: 0;">Today's Attendance Records</h3>
+      <span class="badge badge-primary" id="currentAttendanceDate"></span>
+    </div>
+    <div id="attendanceRecords" class="empty-state">
+      <i class="fas fa-calendar-times"></i>
+      <p>No attendance records for today</p>
+    </div>
+  </div>
+  
+  <div class="card" style="margin-top: 1.5rem;">
+    <div class="card-header">
+      <h3 style="margin: 0;">Attendance History</h3>
+      <span class="badge badge-primary">Last 7 Days</span>
+    </div>
+    <table id="attendanceHistory">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Present</th>
+          <th>Absent</th>
+          <th>Late</th>
+          <th>Rate</th>
+        </tr>
+      </thead>
+      <tbody id="attendanceHistoryBody">
+        <tr>
+          <td colspan="5" style="text-align: center; padding: 2rem; color: var(--muted);">
+            No attendance history available
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- MARK ATTENDANCE PAGE -->
+<div id="markAttendancePage" class="container hidden">
+  <div class="auth-card fade-in" style="max-width: 800px; margin: 0 auto;">
+    <div class="auth-header">
+      <h2>Mark Attendance</h2>
+      <p>Record attendance for your employees</p>
+    </div>
+    
+    <div class="card" style="border: none; box-shadow: none; padding: 0;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <div>
+          <label style="margin: 0; display: inline;">Select Date:</label>
+          <input type="date" id="markAttendanceDate" value="" style="max-width: 180px; display: inline-block; margin-left: 1rem;">
+        </div>
+        <span class="badge badge-primary">
+          <i class="fas fa-calendar-alt"></i> 
+          <span id="selectedDateText">Today</span>
+        </span>
+      </div>
+      
+      <div id="attendanceFormContainer" class="empty-state">
+        <i class="fas fa-users"></i>
+        <p>Loading employee list...</p>
+      </div>
+      
+      <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+        <button class="btn btn-primary" onclick="saveAttendance()" style="flex: 1;">
+          <i class="fas fa-save"></i> Save Attendance
+        </button>
+        <button class="btn btn-outline" onclick="showPage('attendancePage')" style="flex: 1;">
+          <i class="fas fa-arrow-left"></i> Back to Attendance
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REPORTS PAGE -->
+<div id="reportsPage" class="container hidden">
+  <div class="page-header">
+    <div>
+      <h2>Reports & Analytics</h2>
+      <p style="color: var(--muted);">Generate insights from your employee data</p>
+    </div>
+    <div class="date-picker">
+      <span class="badge badge-success">
+        <i class="fas fa-chart-line"></i> Analytics
+      </span>
+    </div>
+  </div>
+  
+  <div class="flex">
+    <div class="col">
+      <div class="card">
+        <h3><i class="fas fa-file-alt" style="margin-right: 8px;"></i> Generate Report</h3>
+        
+        <label for="reportType">Report Type</label>
+        <select id="reportType">
+          <option value="attendance">Attendance Summary</option>
+          <option value="department">Department Report</option>
+          <option value="monthly">Monthly Attendance</option>
+          <option value="employee">Employee Performance</option>
+        </select>
+        
+        <label for="reportStartDate">Start Date</label>
+        <input type="date" id="reportStartDate">
+        
+        <label for="reportEndDate">End Date</label>
+        <input type="date" id="reportEndDate">
+        
+        <label for="reportDepartment">Department (optional)</label>
+        <select id="reportDepartment">
+          <option value="">All Departments</option>
+        </select>
+        
+        <button class="btn btn-primary" onclick="generateReport()" style="margin-top: 1.5rem; width: 100%;">
+          <i class="fas fa-chart-bar"></i> Generate Report
+        </button>
+        
+        <button class="btn btn-outline" onclick="printReport()" id="printReportBtn" style="margin-top: 1rem; width: 100%; display: none;">
+          <i class="fas fa-print"></i> Print Report
+        </button>
+      </div>
+    </div>
+    
+    <div class="col" style="flex: 2;">
+      <div class="card" style="height: 100%;">
+        <div class="card-header">
+          <h3 style="margin: 0;">Report Preview</h3>
+          <span class="badge badge-primary" id="reportTypeBadge">-</span>
+        </div>
+        <div id="reportPreview" style="min-height: 400px; padding: 1.5rem; background: #f8fafc; border-radius: var(--radius-sm); overflow: auto;">
+          <div class="empty-state">
+            <i class="fas fa-chart-pie"></i>
+            <p>Select report options and click "Generate Report"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="card" style="margin-top: 1.5rem;">
+    <div class="card-header">
+      <h3 style="margin: 0;">Quick Statistics</h3>
+      <button class="btn btn-sm btn-outline" onclick="loadQuickStats()">
+        <i class="fas fa-sync-alt"></i> Refresh
+      </button>
+    </div>
+    <div id="quickStats" class="flex">
+      <!-- Quick stats will be dynamically inserted here -->
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+    <div>
+      <p>© 2025 <strong>NajMel HQ Employee Management System</strong>. All rights reserved.</p>
+      <!-- Removed specific HR Manager details -->
+    </div>
+    <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+      <a href="https://www.instagram.com/yourusername" target="_blank" aria-label="Instagram">
+        <i class="fab fa-instagram social-icon"></i>
+      </a>
+      <a href="https://www.facebook.com/yourpage" target="_blank" aria-label="Facebook">
+        <i class="fab fa-facebook social-icon"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/yourprofile" target="_blank" aria-label="LinkedIn">
+        <i class="fab fa-linkedin social-icon"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ==================== INITIALIZATION ====================
+  // Initialize data structures
+  let employees = JSON.parse(localStorage.getItem('employees')) || {};
+  let users = JSON.parse(localStorage.getItem('users')) || {};
+  let attendance = JSON.parse(localStorage.getItem('attendance')) || {};
+  let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+  
+  // Pagination variables
+  let currentPage = 1;
+  const employeesPerPage = 9; // 3x3 grid
+
+  // Set current date in dashboard
+  document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-US', { 
+    weekday: 'long', 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  });
+
+  // Enhanced Clock Function with Date
+  function updateClock(){
+    const now = new Date();
+    const h = String(now.getHours()).padStart(2,'0');
+    const m = String(now.getMinutes()).padStart(2,'0');
+    const s = String(now.getSeconds()).padStart(2,'0');
+    
+    // Format time with AM/PM
+    const hours = now.getHours();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const displayHours = hours % 12 || 12;
+    
+    document.getElementById('clock').innerHTML = `
+      <i class="fas fa-clock" style="margin-right: 6px;"></i>
+      ${displayHours}:${m}:${s} ${ampm}
+    `;
+  }
+  setInterval(updateClock,1000);
+  updateClock();
+
+  // ==================== USER MANAGEMENT ====================
+  // Create default admin accounts if they don't exist
+  function initializeDefaultAdmins() {
+    // Admin 1: Muhd Najwan
+    if (!users.admin1) {
+      users.admin1 = {
+        password: '11223344',
+        profile: {
+          name: 'Muhd Najwan',
+          age: 32,
+          address: 'No 31, Jalan Mont Kiara 2/1, Kuala Lumpur',
+          location: 'Kuala Lumpur',
+          email: 'hrnajwan@najmel.com',
+          position: 'HR Manager',
+          role: 'admin'
+        }
+      };
+    }
+    
+    // Admin 2: Shamell Imran (NEW ADMIN ACCOUNT)
+    if (!users.admin2) {
+      users.admin2 = {
+        password: '55667788',
+        profile: {
+          name: 'Shamell Imran',
+          age: 31,
+          address: '194, Jalan Bunga Mawar, Felda Pasak, Kota Tinggi Johor',
+          location: 'Johor',
+          email: 'hrmelz@najmel.com',
+          position: 'HR Manager',
+          role: 'admin'
+        }
+      };
+    }
+    
+    localStorage.setItem('users', JSON.stringify(users));
+  }
+
+  // Initialize default admins on page load
+  initializeDefaultAdmins();
+
+  // ==================== PAGE NAVIGATION ====================
+  function showPage(pageId){
+    // Hide all containers
+    document.querySelectorAll('.auth-container, .container').forEach(c => c.classList.add('hidden'));
+    document.getElementById(pageId).classList.remove('hidden');
+    
+    // Add fade-in animation
+    const pageElement = document.getElementById(pageId);
+    pageElement.classList.add('fade-in');
+    setTimeout(() => pageElement.classList.remove('fade-in'), 500);
+
+    // Initialize page-specific data
+    switch(pageId) {
+      case 'employeeListPage':
+        currentPage = 1;
+        renderEmployees();
+        updatePagination();
+        updateEmployeeCount();
+        break;
+      case 'dashboardPage':
+        updateDashboard();
+        loadRecentAttendance();
+        updateAdminProfile();
+        break;
+      case 'attendancePage':
+        loadAttendanceForDate();
+        loadAttendanceHistory();
+        updateAttendanceDate();
+        break;
+      case 'reportsPage':
+        populateDepartmentDropdown();
+        loadQuickStats();
+        break;
+      case 'markAttendancePage':
+        loadAttendanceForm();
+        updateSelectedDateText();
+        break;
+      case 'addEmployeePage':
+        // Clear form for new employee
+        if(!document.getElementById('empId').value) {
+          clearForm();
+        }
+        break;
+    }
+    
+    // Set default dates
+    const today = new Date().toISOString().split('T')[0];
+    if(document.getElementById('attendanceDate')) {
+      document.getElementById('attendanceDate').value = today;
+    }
+    if(document.getElementById('markAttendanceDate')) {
+      document.getElementById('markAttendanceDate').value = today;
+      updateSelectedDateText();
+    }
+  }
+
+  function updateAdminProfile() {
+    if (currentUser && users[currentUser]) {
+      const adminProfile = users[currentUser].profile;
+      
+      // Update navbar
+      document.getElementById('adminName').textContent = adminProfile.name;
+      document.getElementById('adminAvatar').textContent = adminProfile.name.charAt(0);
+      document.getElementById('greetingName').textContent = adminProfile.name.split(' ')[0];
+      
+      // Update dashboard
+      document.getElementById('dashboardAdminName').textContent = adminProfile.name;
+      document.getElementById('dashboardAdminAvatar').textContent = adminProfile.name.charAt(0);
+      document.getElementById('dashboardAdminEmail').textContent = adminProfile.email;
+      document.getElementById('dashboardAdminAge').textContent = adminProfile.age + ' years';
+      document.getElementById('dashboardAdminLocation').textContent = adminProfile.location;
+      document.getElementById('dashboardAdminAddress').textContent = adminProfile.address;
+    }
+  }
+
+  // ==================== AUTHENTICATION ====================
+  function login(){
+    const username = document.getElementById('loginUser').value.trim();
+    const password = document.getElementById('loginPass').value.trim();
+    
+    if(users[username] && users[username].password === password){
+      currentUser = username;
+      localStorage.setItem('currentUser', JSON.stringify(currentUser));
+      
+      document.getElementById('navLinks').classList.remove('hidden');
+      document.getElementById('loginUser').value = '';
+      document.getElementById('loginPass').value = '';
+      
+      // Update admin profile in navbar and dashboard
+      updateAdminProfile();
+      
+      showNotification('Welcome back, ' + users[username].profile.name + '!', 'success');
+      setTimeout(() => showPage('dashboardPage'), 500);
+    } else {
+      showNotification('Invalid username or password', 'error');
+    }
+  }
+
+  function logout(){
+    currentUser = null;
+    localStorage.removeItem('currentUser');
+    document.getElementById('navLinks').classList.add('hidden');
+    showNotification('Logged out successfully', 'info');
+    setTimeout(() => showPage('loginPage'), 500);
+  }
+
+  // ==================== EMPLOYEE MANAGEMENT ====================
+  // Initialize sample employees if none exist
+  if(Object.keys(employees).length === 0){
+    // Create comprehensive sample data
+    const sampleDepartments = ['IT', 'HR', 'Finance', 'Marketing', 'Operations', 'Sales', 'Customer Service', 'Research & Development'];
+    const samplePositions = {
+      'IT': ['Software Engineer', 'System Analyst', 'Network Administrator', 'IT Support', 'DevOps Engineer', 'Database Administrator'],
+      'HR': ['HR Manager', 'Recruitment Specialist', 'Training Coordinator', 'Compensation Analyst', 'HR Assistant'],
+      'Finance': ['Accountant', 'Financial Analyst', 'Auditor', 'Payroll Specialist', 'Budget Analyst'],
+      'Marketing': ['Marketing Manager', 'Digital Marketer', 'Content Specialist', 'SEO Analyst', 'Social Media Manager'],
+      'Operations': ['Operations Manager', 'Logistics Coordinator', 'Quality Assurance', 'Supply Chain Analyst'],
+      'Sales': ['Sales Manager', 'Account Executive', 'Sales Representative', 'Business Development'],
+      'Customer Service': ['Customer Service Manager', 'Support Specialist', 'Client Relations', 'Call Center Agent'],
+      'Research & Development': ['Research Scientist', 'Product Manager', 'UX Researcher', 'Data Analyst']
+    };
+    
+    const sampleNames = [
+      'Aiman Hakim', 'Siti Nurhana', 'Amirul Shafiq', 'Nurul Izzati', 'Haziq Farhan',
+      'Sarah Johnson', 'Michael Chen', 'Lisa Rodriguez', 'David Wilson', 'Emma Brown',
+      'James Miller', 'Sophia Garcia', 'Robert Lee', 'Olivia Martinez', 'William Taylor',
+      'Ava Anderson', 'John Thomas', 'Isabella Jackson', 'Charles White', 'Mia Harris'
+    ];
+    
+    let empId = 1;
+    
+    // Generate 20 sample employees
+    for (let i = 0; i < 20; i++) {
+      const dept = sampleDepartments[Math.floor(Math.random() * sampleDepartments.length)];
+      const position = samplePositions[dept][Math.floor(Math.random() * samplePositions[dept].length)];
+      const name = sampleNames[i % sampleNames.length] + (i > sampleNames.length - 1 ? ' ' + (Math.floor(i / sampleNames.length) + 1) : '');
+      const email = name.toLowerCase().replace(' ', '.') + '@najmel.com';
+      const phone = '01' + Math.floor(Math.random() * 9) + '-' + 
+                   Math.floor(1000000 + Math.random() * 9000000);
+      const age = Math.floor(22 + Math.random() * 20);
+      const address = ['Kuala Lumpur', 'Petaling Jaya', 'Subang Jaya', 'Shah Alam', 'Klang'][Math.floor(Math.random() * 5)];
+      
+      employees[empId] = {
+        id: empId,
+        name: name,
+        position: position,
+        dept: dept,
+        email: email,
+        phone: phone,
+        age: age,
+        address: 'No ' + (Math.floor(Math.random() * 100) + 1) + ', Jalan ' + address
+      };
+      empId++;
+    }
+    
+    localStorage.setItem('employees', JSON.stringify(employees));
+  }
+
+  // Initialize sample attendance data with REAL dates (no 2001 dates)
+  function initializeSampleAttendance() {
+    const today = new Date();
+    const todayStr = today.toISOString().split('T')[0];
+    
+    // Clear any existing 2001 dates
+    Object.keys(attendance).forEach(date => {
+      if (date.startsWith('2001')) {
+        delete attendance[date];
+      }
+    });
+    
+    // Create realistic sample data for the last 7 days
+    for(let i = 0; i < 7; i++) {
+      const date = new Date();
+      date.setDate(date.getDate() - i);
+      const dateStr = date.toISOString().split('T')[0];
+      
+      // Only create if it doesn't exist already
+      if (!attendance[dateStr]) {
+        attendance[dateStr] = {};
+        
+        Object.keys(employees).forEach(id => {
+          const random = Math.random();
+          if(random < 0.7) attendance[dateStr][id] = 'present';
+          else if(random < 0.85) attendance[dateStr][id] = 'late';
+          else if(random < 0.95) attendance[dateStr][id] = 'absent';
+          else attendance[dateStr][id] = 'leave';
+        });
+      }
+    }
+    
+    localStorage.setItem('attendance', JSON.stringify(attendance));
+  }
+
+  // Call this to ensure no 2001 dates exist
+  initializeSampleAttendance();
+
+  // Pagination functions
+  function updatePagination() {
+    const totalEmployees = Object.keys(employees).length;
+    const totalPages = Math.ceil(totalEmployees / employeesPerPage);
+    
+    if (totalPages <= 1) {
+      document.getElementById('paginationContainer').innerHTML = '';
+      document.getElementById('paginationFooter').innerHTML = '';
+      return;
+    }
+    
+    let paginationHTML = '';
+    
+    // Previous button
+    paginationHTML += `
+      <button class="page-btn" onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled style="opacity:0.5;"' : ''}>
+        <i class="fas fa-chevron-left"></i>
+      </button>
+    `;
+    
+    // Page numbers
+    const maxVisiblePages = 5;
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+    
+    if (endPage - startPage + 1 < maxVisiblePages) {
+      startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+    
+    for (let i = startPage; i <= endPage; i++) {
+      paginationHTML += `
+        <button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">
+          ${i}
+        </button>
+      `;
+    }
+    
+    // Next button
+    paginationHTML += `
+      <button class="page-btn" onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled style="opacity:0.5;"' : ''}>
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    `;
+    
+    document.getElementById('paginationContainer').innerHTML = paginationHTML;
+    document.getElementById('paginationFooter').innerHTML = paginationHTML;
+  }
+
+  function changePage(page) {
+    const totalPages = Math.ceil(Object.keys(employees).length / employeesPerPage);
+    if (page < 1 || page > totalPages) return;
+    
+    currentPage = page;
+    renderEmployees();
+    updatePagination();
+    
+    // Scroll to top of employee container
+    document.getElementById('employeeContainer').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function updateEmployeeCount() {
+    const totalEmployees = Object.keys(employees).length;
+    const startIdx = (currentPage - 1) * employeesPerPage + 1;
+    const endIdx = Math.min(currentPage * employeesPerPage, totalEmployees);
+    
+    document.getElementById('employeeCount').textContent = 
+      `${totalEmployees} Employees (Showing ${startIdx}-${endIdx})`;
+    
+    // Update storage info
+    document.getElementById('storageInfo').innerHTML = `
+      <i class="fas fa-database"></i> ${totalEmployees}/Unlimited Employees
+    `;
+  }
+
+  function renderEmployees(){
+    const container = document.getElementById('employeeContainer');
+    container.innerHTML = '';
+    const term = (document.getElementById('searchEmp')?.value || '').toLowerCase();
+
+    // Get employees for current page
+    const employeeIds = Object.keys(employees);
+    const filteredIds = employeeIds.filter(id => {
+      const emp = employees[id];
+      const matches = `${emp.name} ${emp.position} ${emp.dept} ${emp.email} ${emp.phone}`.toLowerCase().includes(term);
+      return matches;
+    });
+
+    const startIdx = (currentPage - 1) * employeesPerPage;
+    const endIdx = Math.min(startIdx + employeesPerPage, filteredIds.length);
+    const paginatedIds = filteredIds.slice(startIdx, endIdx);
+
+    // If search is active, don't use pagination
+    const displayIds = term ? filteredIds : paginatedIds;
+
+    if(displayIds.length === 0){
+      const empty = document.createElement('div');
+      empty.className = 'col';
+      empty.innerHTML = `
+        <div class="card empty-state">
+          <i class="fas fa-users-slash"></i>
+          <h3>No Employees Found</h3>
+          <p>${term ? 'Try adjusting your search' : 'Add your first employee'}</p>
+          <button class="btn btn-primary" onclick="showPage('addEmployeePage'); clearForm();" style="margin-top: 1rem;">
+            <i class="fas fa-user-plus"></i> Add New Employee
+          </button>
+        </div>
+      `;
+      container.appendChild(empty);
+      return;
+    }
+
+    displayIds.forEach((id, index) => {
+      const emp = employees[id];
+      if(!emp) return;
+      
+      // Get initials for avatar
+      const initials = emp.name.split(' ').map(n => n[0]).join('').toUpperCase();
+      
+      const card = document.createElement('div');
+      card.className = 'col fade-in';
+      card.style.animationDelay = `${index * 0.1}s`;
+      card.innerHTML = `
+        <div class="employee-card">
+          <div class="employee-avatar">
+            ${initials}
+          </div>
+          <h4>${escapeHtml(emp.name)}</h4>
+          <div class="employee-position">${escapeHtml(emp.position)}</div>
+          <div class="employee-dept">${escapeHtml(emp.dept)}</div>
+          <div style="margin: 1rem 0; font-size: 0.9rem; color: var(--muted);">
+            <div><i class="fas fa-envelope" style="margin-right: 6px;"></i> ${escapeHtml(emp.email)}</div>
+            <div><i class="fas fa-phone" style="margin-right: 6px;"></i> ${escapeHtml(emp.phone)}</div>
+            ${emp.age ? `<div><i class="fas fa-birthday-cake" style="margin-right: 6px;"></i> ${emp.age} years</div>` : ''}
+          </div>
+          <div class="actions">
+            <button class="edit-btn" onclick="editEmployee(${id})">
+              <i class="fas fa-edit"></i> Edit
+            </button>
+            <button class="delete-btn" onclick="deleteEmployee(${id})">
+              <i class="fas fa-trash"></i> Delete
+            </button>
+          </div>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+
+    if (!term) {
+      updatePagination();
+    }
+  }
+
+  function editEmployee(id){
+    const emp = employees[id];
+    if(!emp) {
+      showNotification('Employee not found', 'error');
+      return;
+    }
+    
+    document.getElementById('formTitle').innerText = 'Edit Employee';
+    document.getElementById('empId').value = id;
+    document.getElementById('empNameInput').value = emp.name;
+    document.getElementById('empPositionInput').value = emp.position;
+    document.getElementById('empDeptInput').value = emp.dept;
+    document.getElementById('empEmailInput').value = emp.email;
+    document.getElementById('empPhoneInput').value = emp.phone;
+    document.getElementById('empAgeInput').value = emp.age || '';
+    document.getElementById('empAddressInput').value = emp.address || '';
+    showPage('addEmployeePage');
+  }
+
+  function clearForm(){
+    document.getElementById('formTitle').innerText = 'Add New Employee';
+    document.getElementById('empId').value = '';
+    document.getElementById('empNameInput').value = '';
+    document.getElementById('empPositionInput').value = '';
+    document.getElementById('empDeptInput').value = '';
+    document.getElementById('empEmailInput').value = '';
+    document.getElementById('empPhoneInput').value = '';
+    document.getElementById('empAgeInput').value = '';
+    document.getElementById('empAddressInput').value = '';
+  }
+
+  function saveEmployee(){
+    const idEl = document.getElementById('empId');
+    const name = document.getElementById('empNameInput').value.trim();
+    const position = document.getElementById('empPositionInput').value.trim();
+    const dept = document.getElementById('empDeptInput').value.trim();
+    const email = document.getElementById('empEmailInput').value.trim();
+    const phone = document.getElementById('empPhoneInput').value.trim();
+    const age = document.getElementById('empAgeInput').value.trim();
+    const address = document.getElementById('empAddressInput').value.trim();
+
+    if(!name || !position || !dept || !email || !phone) {
+      showNotification('Please fill all required fields (Name, Position, Department, Email, Phone).', 'error');
+      return;
+    }
+
+    // Generate new ID if needed
+    let newId;
+    if (idEl.value) {
+      newId = parseInt(idEl.value);
+    } else {
+      // Find the highest existing ID and add 1
+      const existingIds = Object.keys(employees).map(id => parseInt(id));
+      newId = existingIds.length > 0 ? Math.max(...existingIds) + 1 : 1;
+    }
+
+    employees[newId] = { 
+      id: newId, 
+      name, 
+      position, 
+      dept, 
+      email, 
+      phone,
+      age: age || null,
+      address: address || null
+    };
+    
+    localStorage.setItem('employees', JSON.stringify(employees));
+    showNotification(`Employee ${idEl.value ? 'updated' : 'added'} successfully!`, 'success');
+    clearForm();
+    
+    // Update employee count
+    updateEmployeeCount();
+    
+    setTimeout(() => showPage('employeeListPage'), 500);
+  }
+
+  function deleteEmployee(id){
+    if(!confirm('Are you sure you want to delete this employee? This action cannot be undone.')) return;
+    
+    delete employees[id];
+    localStorage.setItem('employees', JSON.stringify(employees));
+    
+    // Reset to page 1 if current page becomes empty
+    const totalEmployees = Object.keys(employees).length;
+    const totalPages = Math.ceil(totalEmployees / employeesPerPage);
+    if (currentPage > totalPages && totalPages > 0) {
+      currentPage = totalPages;
+    } else if (totalPages === 0) {
+      currentPage = 1;
+    }
+    
+    renderEmployees();
+    updateDashboard();
+    updateEmployeeCount();
+    showNotification('Employee deleted successfully', 'info');
+  }
+
+  function filterEmployees(){
+    // When searching, show all results without pagination
+    const term = (document.getElementById('searchEmp')?.value || '').toLowerCase();
+    if (term) {
+      renderEmployees();
+      document.getElementById('paginationContainer').innerHTML = '';
+      document.getElementById('paginationFooter').innerHTML = '';
+    } else {
+      currentPage = 1;
+      renderEmployees();
+      updatePagination();
+    }
+    updateEmployeeCount();
+  }
+
+  // ==================== DASHBOARD FUNCTIONS ====================
+  function updateDashboard(){
+    const totalEmployees = Object.keys(employees).length;
+    document.getElementById('totalEmployees').innerText = totalEmployees;
+    
+    const departments = new Set(Object.values(employees).map(e => e.dept));
+    document.getElementById('totalDepartments').innerText = departments.size;
+    
+    // Update today's attendance
+    const today = new Date().toISOString().split('T')[0];
+    const todayAttendance = attendance[today] || {};
+    
+    let presentCount = 0;
+    Object.values(todayAttendance).forEach(status => {
+      if (status === 'present' || status === 'late') presentCount++;
+    });
+    
+    document.getElementById('todayAttendance').innerText = `${presentCount}/${totalEmployees}`;
+  }
+
+  function loadRecentAttendance() {
+    const container = document.getElementById('recentAttendanceList');
+    
+    const today = new Date().toISOString().split('T')[0];
+    const todayAttendance = attendance[today] || {};
+    
+    // Get first 5 employees
+    const employeeIds = Object.keys(employees).slice(0, 5);
+    
+    if(employeeIds.length === 0) {
+      container.innerHTML = `
+        <div class="empty-state">
+          <i class="fas fa-users-slash"></i>
+          <p>No employees in the system yet</p>
+        </div>
+      `;
+      return;
+    }
+    
+    if(Object.keys(todayAttendance).length === 0) {
+      container.innerHTML = `
+        <div class="empty-state">
+          <i class="fas fa-clipboard-check"></i>
+          <p>No attendance marked for today yet</p>
+          <button class="btn btn-sm btn-primary" onclick="showPage('markAttendancePage')" style="margin-top: 1rem;">
+            <i class="fas fa-edit"></i> Mark Attendance Now
+          </button>
+        </div>
+      `;
+      return;
+    }
+    
+    container.innerHTML = '';
+    let count = 0;
+    
+    employeeIds.forEach(id => {
+      if (count >= 5) return;
+      
+      const emp = employees[id];
+      if(!emp) return;
+      
+      const status = todayAttendance[id] || 'absent';
+      
+      const div = document.createElement('div');
+      div.className = 'attendance-record fade-in';
+      div.style.animationDelay = `${count * 0.1}s`;
+      
+      let statusClass = 'status-absent';
+      let statusText = 'Absent';
+      let statusIcon = 'fas fa-user-slash';
+      
+      if (status === 'present') {
+        statusClass = 'status-present';
+        statusText = 'Present';
+        statusIcon = 'fas fa-user-check';
+      } else if (status === 'late') {
+        statusClass = 'status-late';
+        statusText = 'Late';
+        statusIcon = 'fas fa-clock';
+      } else if (status === 'leave') {
+        statusClass = 'status-leave';
+        statusText = 'Leave';
+        statusIcon = 'fas fa-umbrella-beach';
+      }
+      
+      div.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">
+            ${emp.name.split(' ').map(n => n[0]).join('').toUpperCase()}
+          </div>
+          <div>
+            <strong>${escapeHtml(emp.name)}</strong>
+            <div style="font-size: 0.85rem; color: var(--muted);">${escapeHtml(emp.dept)}</div>
+          </div>
+        </div>
+        <div class="status-badge ${statusClass}">
+          <i class="${statusIcon}" style="margin-right: 6px;"></i> ${statusText}
+        </div>
+      `;
+      
+      container.appendChild(div);
+      count++;
+    });
+  }
+
+  // ==================== ATTENDANCE SYSTEM ====================
+  function updateAttendanceDate() {
+    const dateInput = document.getElementById('attendanceDate');
+    const date = dateInput.value || new Date().toISOString().split('T')[0];
+    document.getElementById('currentAttendanceDate').textContent = formatDate(date);
+  }
+  
+  function updateSelectedDateText() {
+    const dateInput = document.getElementById('markAttendanceDate');
+    const date = dateInput.value || new Date().toISOString().split('T')[0];
+    document.getElementById('selectedDateText').textContent = formatDate(date);
+  }
+
+  function loadAttendanceForDate() {
+    updateAttendanceDate();
+    const dateInput = document.getElementById('attendanceDate');
+    let date = dateInput.value;
+    if (!date) {
+      date = new Date().toISOString().split('T')[0];
+      dateInput.value = date;
+    }
+    
+    const dateAttendance = attendance[date] || {};
+    
+    const recordsContainer = document.getElementById('attendanceRecords');
+    
+    let presentCount = 0;
+    let absentCount = 0;
+    let lateCount = 0;
+    let leaveCount = 0;
+    
+    // Clear and prepare container
+    recordsContainer.innerHTML = '';
+    recordsContainer.classList.remove('empty-state');
+    
+    if(Object.keys(employees).length === 0) {
+      recordsContainer.innerHTML = `
+        <div class="empty-state">
+          <i class="fas fa-users-slash"></i>
+          <p>No employees in the system yet</p>
+          <button class="btn btn-sm btn-primary" onclick="showPage('addEmployeePage')" style="margin-top: 1rem;">
+            <i class="fas fa-user-plus"></i> Add Employees First
+          </button>
+        </div>
+      `;
+      return;
+    }
+    
+    Object.keys(employees).forEach((id, index) => {
+      const emp = employees[id];
+      if(!emp) return;
+      
+      const status = dateAttendance[id] || 'absent';
+      
+      const record = document.createElement('div');
+      record.className = 'attendance-record fade-in';
+      record.style.animationDelay = `${index * 0.05}s`;
+      
+      let statusClass = 'status-absent';
+      let statusText = 'Absent';
+      let statusIcon = 'fas fa-user-slash';
+      
+      if (status === 'present') {
+        statusClass = 'status-present';
+        statusText = 'Present';
+        statusIcon = 'fas fa-user-check';
+        presentCount++;
+      } else if (status === 'late') {
+        statusClass = 'status-late';
+        statusText = 'Late';
+        statusIcon = 'fas fa-clock';
+        lateCount++;
+      } else if (status === 'leave') {
+        statusClass = 'status-leave';
+        statusText = 'Leave';
+        statusIcon = 'fas fa-umbrella-beach';
+        leaveCount++;
+      } else {
+        absentCount++;
+      }
+      
+      record.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">
+            ${emp.name.split(' ').map(n => n[0]).join('').toUpperCase()}
+          </div>
+          <div>
+            <strong>${escapeHtml(emp.name)}</strong>
+            <div style="font-size: 0.85rem; color: var(--muted);">${escapeHtml(emp.position)} - ${escapeHtml(emp.dept)}</div>
+          </div>
+        </div>
+        <div class="status-badge ${statusClass}">
+          <i class="${statusIcon}" style="margin-right: 6px;"></i> ${statusText}
+        </div>
+      `;
+      
+      recordsContainer.appendChild(record);
+    });
+    
+    // Update summary
+    document.getElementById('presentCount').innerText = presentCount;
+    document.getElementById('absentCount').innerText = absentCount + leaveCount;
+    document.getElementById('lateCount').innerText = lateCount;
+    
+    const totalEmployees = Object.keys(employees).length;
+    const attendanceRate = totalEmployees > 0 ? Math.round(((presentCount + lateCount) / totalEmployees) * 100) : 0;
+    document.getElementById('attendanceRate').innerText = `${attendanceRate}%`;
+    
+    // If no records yet
+    if (Object.keys(dateAttendance).length === 0 && totalEmployees > 0) {
+      recordsContainer.innerHTML = `
+        <div class="empty-state">
+          <i class="fas fa-calendar-times"></i>
+          <p>No attendance records for ${formatDate(date)}</p>
+          <button class="btn btn-sm btn-primary" onclick="showPage('markAttendancePage')" style="margin-top: 1rem;">
+            <i class="fas fa-edit"></i> Mark Attendance Now
+          </button>
+        </div>
+      `;
+    }
+  }
+  
+  function loadAttendanceHistory() {
+    const historyBody = document.getElementById('attendanceHistoryBody');
+    
+    // Get today's date and calculate last 7 days
+    const today = new Date();
+    const last7Days = [];
+    
+    for (let i = 0; i < 7; i++) {
+      const date = new Date(today);
+      date.setDate(date.getDate() - i);
+      const dateStr = date.toISOString().split('T')[0];
+      last7Days.push(dateStr);
+    }
+    
+    // Filter attendance records to only include dates from the last 7 days
+    const recentAttendance = {};
+    last7Days.forEach(date => {
+      if (attendance[date]) {
+        recentAttendance[date] = attendance[date];
+      }
+    });
+    
+    const dates = Object.keys(recentAttendance).sort().reverse();
+    
+    if(dates.length === 0) {
+      historyBody.innerHTML = `
+        <tr>
+          <td colspan="5" style="text-align:center; padding:3rem; color:var(--muted);">
+            <div class="empty-state" style="padding: 0;">
+              <i class="fas fa-history"></i>
+              <p>No attendance history for the last 7 days</p>
+              <button class="btn btn-sm btn-primary" onclick="showPage('markAttendancePage')" style="margin-top: 1rem;">
+                <i class="fas fa-edit"></i> Mark Attendance
+              </button>
+            </div>
+          </td>
+        </tr>
+      `;
+      return;
+    }
+    
+    historyBody.innerHTML = '';
+    
+    dates.forEach((date, index) => {
+      const dateAttendance = attendance[date] || {};
+      let presentCount = 0;
+      let absentCount = 0;
+      let lateCount = 0;
+      
+      Object.keys(employees).forEach(id => {
+        const status = dateAttendance[id] || 'absent';
+        if (status === 'present') presentCount++;
+        else if (status === 'late') lateCount++;
+        else absentCount++;
+      });
+      
+      const total = Object.keys(employees).length;
+      const rate = total > 0 ? Math.round(((presentCount + lateCount) / total) * 100) : 0;
+      
+      const row = document.createElement('tr');
+      row.className = 'fade-in';
+      row.style.animationDelay = `${index * 0.1}s`;
+      row.innerHTML = `
+        <td><strong>${formatDate(date)}</strong></td>
+        <td><span class="status-badge status-present">${presentCount}</span></td>
+        <td><span class="status-badge status-absent">${absentCount}</span></td>
+        <td><span class="status-badge status-late">${lateCount}</span></td>
+        <td>
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <div style="flex: 1; height: 6px; background: #e2e8f0; border-radius: 3px; overflow: hidden;">
+              <div style="width: ${rate}%; height: 100%; background: var(--primary);"></div>
+            </div>
+            <span style="font-weight: 600; color: var(--primary); min-width: 40px;">${rate}%</span>
+          </div>
+        </td>
+      `;
+      historyBody.appendChild(row);
+    });
+  }
+  
+  function loadAttendanceForm() {
+    const dateInput = document.getElementById('markAttendanceDate');
+    if (!dateInput.value) {
+      const today = new Date().toISOString().split('T')[0];
+      dateInput.value = today;
+    }
+    
+    const container = document.getElementById('attendanceFormContainer');
+    
+    const date = dateInput.value;
+    const dateAttendance = attendance[date] || {};
+    
+    if(Object.keys(employees).length === 0) {
+      container.innerHTML = `
+        <div class="empty-state">
+          <i class="fas fa-users-slash"></i>
+          <p>No employees to mark attendance for</p>
+          <button class="btn btn-sm btn-primary" onclick="showPage('addEmployeePage')" style="margin-top: 1rem;">
+            <i class="fas fa-user-plus"></i> Add Employees First
+          </button>
+        </div>
+      `;
+      return;
+    }
+    
+    container.innerHTML = '';
+    container.classList.remove('empty-state');
+    
+    Object.keys(employees).forEach((id, index) => {
+      const emp = employees[id];
+      if(!emp) return;
+      
+      const currentStatus = dateAttendance[id] || 'present';
+      
+      const div = document.createElement('div');
+      div.className = 'attendance-record fade-in';
+      div.style.animationDelay = `${index * 0.05}s`;
+      div.style.marginBottom = '0.75rem';
+      div.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <div style="width: 50px; height: 50px; border-radius: 50%; background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 1.1rem;">
+            ${emp.name.split(' ').map(n => n[0]).join('').toUpperCase()}
+          </div>
+          <div style="flex: 1;">
+            <strong>${escapeHtml(emp.name)}</strong>
+            <div style="font-size: 0.85rem; color: var(--muted);">${escapeHtml(emp.position)} - ${escapeHtml(emp.dept)}</div>
+          </div>
+          <select id="attendance_${id}" style="width: auto; min-width: 140px; margin: 0;">
+            <option value="present" ${currentStatus === 'present' ? 'selected' : ''}>
+              <i class="fas fa-user-check"></i> Present
+            </option>
+            <option value="late" ${currentStatus === 'late' ? 'selected' : ''}>
+              <i class="fas fa-clock"></i> Late
+            </option>
+            <option value="absent" ${currentStatus === 'absent' ? 'selected' : ''}>
+              <i class="fas fa-user-slash"></i> Absent
+            </option>
+            <option value="leave" ${currentStatus === 'leave' ? 'selected' : ''}>
+              <i class="fas fa-umbrella-beach"></i> Leave
+            </option>
+          </select>
+        </div>
+      `;
+      container.appendChild(div);
+    });
+    
+    // Add change event to date input
+    dateInput.onchange = updateSelectedDateText;
+  }
+  
+  function saveAttendance() {
+    const date = document.getElementById('markAttendanceDate').value;
+    if (!date) {
+      showNotification('Please select a date', 'error');
+      return;
+    }
+    
+    const dateAttendance = {};
+    
+    Object.keys(employees).forEach(id => {
+      const select = document.getElementById(`attendance_${id}`);
+      if (select) {
+        dateAttendance[id] = select.value;
+      }
+    });
+    
+    attendance[date] = dateAttendance;
+    localStorage.setItem('attendance', JSON.stringify(attendance));
+    
+    showNotification(`Attendance saved for ${formatDate(date)}!`, 'success');
+    setTimeout(() => showPage('attendancePage'), 500);
+  }
+
+  // ==================== REPORTS SYSTEM ====================
+  function populateDepartmentDropdown() {
+    const select = document.getElementById('reportDepartment');
+    select.innerHTML = '<option value="">All Departments</option>';
+    
+    const departments = new Set();
+    Object.values(employees).forEach(emp => {
+      if(emp && emp.dept) departments.add(emp.dept);
+    });
+    
+    departments.forEach(dept => {
+      const option = document.createElement('option');
+      option.value = dept;
+      option.textContent = dept;
+      select.appendChild(option);
+    });
+  }
+  
+  function loadQuickStats() {
+    const container = document.getElementById('quickStats');
+    container.innerHTML = '';
+    
+    // Employee count by department
+    const deptCount = {};
+    Object.values(employees).forEach(emp => {
+      if(emp && emp.dept) {
+        deptCount[emp.dept] = (deptCount[emp.dept] || 0) + 1;
+      }
+    });
+    
+    if(Object.keys(deptCount).length === 0) {
+      container.innerHTML = `
+        <div class="col">
+          <div class="card empty-state" style="text-align: center;">
+            <i class="fas fa-chart-pie"></i>
+            <p>No department data available</p>
+          </div>
+        </div>
+      `;
+      return;
+    }
+    
+    Object.keys(deptCount).forEach((dept, index) => {
+      const card = document.createElement('div');
+      card.className = 'col fade-in';
+      card.style.animationDelay = `${index * 0.1}s`;
+      card.innerHTML = `
+        <div class="card stat-card">
+          <h3>${escapeHtml(dept)}</h3>
+          <div class="stat-value">${deptCount[dept]}</div>
+          <p style="color: var(--muted); font-size: 0.9rem;">Employees</p>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  }
+  
+  function generateReport() {
+    const reportType = document.getElementById('reportType').value;
+    const startDate = document.getElementById('reportStartDate').value;
+    const endDate = document.getElementById('reportEndDate').value;
+    const department = document.getElementById('reportDepartment').value;
+    
+    // Set default dates if not provided
+    const today = new Date().toISOString().split('T')[0];
+    const oneMonthAgo = new Date();
+    oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+    const oneMonthAgoStr = oneMonthAgo.toISOString().split('T')[0];
+    
+    const reportStart = startDate || oneMonthAgoStr;
+    const reportEnd = endDate || today;
+    
+    document.getElementById('reportStartDate').value = reportStart;
+    document.getElementById('reportEndDate').value = reportEnd;
+    
+    const preview = document.getElementById('reportPreview');
+    const printBtn = document.getElementById('printReportBtn');
+    const reportTypeBadge = document.getElementById('reportTypeBadge');
+    
+    reportTypeBadge.textContent = getReportTypeName(reportType);
+    
+    let reportHTML = `
+      <div class="report-card">
+        <h3 style="color: var(--primary); margin-top: 0;">
+          <i class="fas fa-chart-bar" style="margin-right: 10px;"></i>
+          ${getReportTypeName(reportType)}
+        </h3>
+        <div style="display: flex; gap: 2rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
+          <div>
+            <strong>Date Range:</strong><br>
+            ${formatDate(reportStart)} to ${formatDate(reportEnd)}
+          </div>
+          ${department ? `<div><strong>Department:</strong><br>${department}</div>` : ''}
+          <div>
+            <strong>Generated:</strong><br>
+            ${new Date().toLocaleDateString()}
+          </div>
+        </div>
+    `;
+    
+    if (reportType === 'attendance') {
+      reportHTML += generateAttendanceReport(reportStart, reportEnd, department);
+    } else if (reportType === 'department') {
+      reportHTML += generateDepartmentReport(department);
+    } else if (reportType === 'monthly') {
+      reportHTML += generateMonthlyReport(reportStart, reportEnd);
+    } else if (reportType === 'employee') {
+      reportHTML += generateEmployeeReport(department);
+    }
+    
+    reportHTML += `</div>`;
+    preview.innerHTML = reportHTML;
+    printBtn.style.display = 'inline-flex';
+    
+    showNotification('Report generated successfully!', 'success');
+  }
+  
+function generateAttendanceReport(startDate, endDate, department) {
+    let html = '<h4>Attendance Details</h4>';
+    
+    // Filter employees by department if specified
+    let filteredEmployees = Object.keys(employees);
+    if (department) {
+        filteredEmployees = filteredEmployees.filter(id => employees[id] && employees[id].dept === department);
+    }
+    
+    const totalEmployees = filteredEmployees.length;
+    
+    if(totalEmployees === 0) {
+        return '<div class="empty-state"><p>No employees found for the selected department.</p></div>';
+    }
+    
+    // Generate date range
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    const dates = [];
+    
+    for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+        dates.push(new Date(d).toISOString().split('T')[0]);
+    }
+    
+    // Filter dates to only those that have attendance data
+    const datesWithData = dates.filter(date => {
+        const dateAttendance = attendance[date];
+        if (!dateAttendance) return false;
+        
+        // Check if any filtered employee has attendance for this date
+        return filteredEmployees.some(id => dateAttendance[id] !== undefined);
+    });
+    
+    if(datesWithData.length === 0) {
+        return '<div class="empty-state"><p>No attendance data available for the selected date range.</p></div>';
+    }
+    
+    html += '<table><thead><tr><th>Date</th><th>Present</th><th>Absent</th><th>Late</th><th>Leave</th><th>Rate</th></tr></thead><tbody>';
+    
+    datesWithData.forEach(date => {
+        const dateAttendance = attendance[date] || {};
+        let present = 0;
+        let absent = 0;
+        let late = 0;
+        let leave = 0;
+        
+        filteredEmployees.forEach(id => {
+            const status = dateAttendance[id] || 'absent';
+            if (status === 'present') present++;
+            else if (status === 'late') late++;
+            else if (status === 'leave') leave++;
+            else absent++;
+        });
+        
+        const rate = totalEmployees > 0 ? Math.round(((present + late) / totalEmployees) * 100) : 0;
+        
+        html += `<tr>
+            <td><strong>${formatDate(date)}</strong></td>
+            <td><span class="status-badge status-present">${present}</span></td>
+            <td><span class="status-badge status-absent">${absent}</span></td>
+            <td><span class="status-badge status-late">${late}</span></td>
+            <td><span class="status-badge status-leave">${leave}</span></td>
+            <td><span style="font-weight: 600; color: var(--primary);">${rate}%</span></td>
+        </tr>`;
+    });
+    
+    html += '</tbody></table>';
+    
+    return html;
+}
+  
+  function generateDepartmentReport(department) {
+    let html = '';
+    
+    if (department) {
+      // Single department report
+      const deptEmployees = Object.values(employees).filter(emp => emp && emp.dept === department);
+      
+      if(deptEmployees.length === 0) {
+        return '<div class="empty-state"><p>No employees found in the selected department.</p></div>';
+      }
+      
+      html += `<h4>${department} Department - ${deptEmployees.length} Employees</h4>`;
+      html += '<table><thead><tr><th>Name</th><th>Position</th><th>Email</th><th>Phone</th></tr></thead><tbody>';
+      
+      deptEmployees.forEach(emp => {
+        html += `<tr>
+          <td><strong>${escapeHtml(emp.name)}</strong></td>
+          <td>${escapeHtml(emp.position)}</td>
+          <td>${escapeHtml(emp.email)}</td>
+          <td>${escapeHtml(emp.phone)}</td>
+        </tr>`;
+      });
+      
+      html += '</tbody></table>';
+    } else {
+      // All departments report
+      const departments = {};
+      Object.values(employees).forEach(emp => {
+        if(emp && emp.dept) {
+          if (!departments[emp.dept]) departments[emp.dept] = [];
+          departments[emp.dept].push(emp);
+        }
+      });
+      
+      if(Object.keys(departments).length === 0) {
+        return '<div class="empty-state"><p>No department data available.</p></div>';
+      }
+      
+      Object.keys(departments).forEach(dept => {
+        html += `<div style="margin-bottom: 2rem;">
+          <h4>${escapeHtml(dept)} Department - ${departments[dept].length} Employees</h4>
+          <table><thead><tr><th>Name</th><th>Position</th><th>Email</th></tr></thead><tbody>`;
+        
+        departments[dept].forEach(emp => {
+          html += `<tr>
+            <td><strong>${escapeHtml(emp.name)}</strong></td>
+            <td>${escapeHtml(emp.position)}</td>
+            <td>${escapeHtml(emp.email)}</td>
+          </tr>`;
+        });
+        
+        html += '</tbody></table></div>';
+      });
+    }
+    
+    return html;
+  }
+  
+  function generateMonthlyReport(startDate, endDate) {
+    // Group by month
+    const monthlyData = {};
+    
+    // Get all dates in range
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    const dates = [];
+    
+    for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+      dates.push(new Date(d).toISOString().split('T')[0]);
+    }
+    
+    dates.forEach(date => {
+      if (attendance[date]) {
+        const month = date.substring(0, 7); // YYYY-MM
+        if (!monthlyData[month]) monthlyData[month] = { present: 0, absent: 0, late: 0, totalDays: 0 };
+        
+        const dateAttendance = attendance[date];
+        let present = 0;
+        let absent = 0;
+        let late = 0;
+        
+        Object.keys(employees).forEach(id => {
+          const status = dateAttendance[id] || 'absent';
+          if (status === 'present') present++;
+          else if (status === 'late') late++;
+          else absent++;
+        });
+        
+        monthlyData[month].present += present;
+        monthlyData[month].absent += absent;
+        monthlyData[month].late += late;
+        monthlyData[month].totalDays++;
+      }
+    });
+    
+    if(Object.keys(monthlyData).length === 0) {
+      return '<div class="empty-state"><p>No attendance data available for the selected date range.</p></div>';
+    }
+    
+    let html = '<h4>Monthly Attendance Summary</h4>';
+    html += '<table><thead><tr><th>Month</th><th>Days Recorded</th><th>Avg. Present/Day</th><th>Avg. Absent/Day</th><th>Avg. Late/Day</th><th>Avg. Rate</th></tr></thead><tbody>';
+    
+    Object.keys(monthlyData).sort().reverse().forEach(month => {
+      const data = monthlyData[month];
+      const totalEmployees = Object.keys(employees).length;
+      const days = data.totalDays;
+      
+      const avgPresent = Math.round(data.present / days);
+      const avgAbsent = Math.round(data.absent / days);
+      const avgLate = Math.round(data.late / days);
+      const avgRate = totalEmployees > 0 ? Math.round(((data.present + data.late) / (totalEmployees * days)) * 100) : 0;
+      
+      const monthName = new Date(month + '-01').toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+      
+      html += `<tr>
+        <td><strong>${monthName}</strong></td>
+        <td>${days}</td>
+        <td><span class="status-badge status-present">${avgPresent}</span></td>
+        <td><span class="status-badge status-absent">${avgAbsent}</span></td>
+        <td><span class="status-badge status-late">${avgLate}</span></td>
+        <td><span style="font-weight: 600; color: var(--primary);">${avgRate}%</span></td>
+      </tr>`;
+    });
+    
+    html += '</tbody></table>';
+    return html;
+  }
+  
+  function generateEmployeeReport(department) {
+    // Filter employees
+    let filteredEmployees = Object.entries(employees);
+    if (department) {
+      filteredEmployees = filteredEmployees.filter(([id, emp]) => emp && emp.dept === department);
+    }
+    
+    if(filteredEmployees.length === 0) {
+      return '<div class="empty-state"><p>No employees found for the selected department.</p></div>';
+    }
+    
+    // Calculate attendance for each employee
+    const employeeAttendance = filteredEmployees.map(([id, emp]) => {
+      let present = 0;
+      let absent = 0;
+      let late = 0;
+      let totalDays = 0;
+      
+      Object.keys(attendance).forEach(date => {
+        const dateAttendance = attendance[date] || {};
+        const status = dateAttendance[id] || 'absent';
+        if (status === 'present') present++;
+        else if (status === 'late') late++;
+        else absent++;
+        totalDays++;
+      });
+      
+      const rate = totalDays > 0 ? Math.round(((present + late) / totalDays) * 100) : 0;
+      
+      return {
+        id,
+        name: emp.name,
+        dept: emp.dept,
+        position: emp.position,
+        present,
+        absent,
+        late,
+        totalDays,
+        rate
+      };
+    });
+    
+    // Sort by attendance rate
+    employeeAttendance.sort((a, b) => b.rate - a.rate);
+    
+    let html = '<h4>Employee Performance Ranking</h4>';
+    html += '<table><thead><tr><th>Employee</th><th>Department</th><th>Position</th><th>Present</th><th>Absent</th><th>Late</th><th>Attendance Rate</th></tr></thead><tbody>';
+    
+    employeeAttendance.forEach((emp, index) => {
+      const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : '';
+      
+      html += `<tr>
+        <td>
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <span style="font-size: 1.2rem;">${medal}</span>
+            <strong>${escapeHtml(emp.name)}</strong>
+          </div>
+        </td>
+        <td>${escapeHtml(emp.dept)}</td>
+        <td>${escapeHtml(emp.position)}</td>
+        <td><span class="status-badge status-present">${emp.present}</span></td>
+        <td><span class="status-badge status-absent">${emp.absent}</span></td>
+        <td><span class="status-badge status-late">${emp.late}</span></td>
+        <td>
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <div style="flex: 1; height: 8px; background: #e2e8f0; border-radius: 4px; overflow: hidden;">
+              <div style="width: ${emp.rate}%; height: 100%; background: ${emp.rate >= 90 ? 'var(--success)' : emp.rate >= 70 ? 'var(--warning)' : 'var(--danger)'};"></div>
+            </div>
+            <span style="font-weight: 700; color: ${emp.rate >= 90 ? 'var(--success)' : emp.rate >= 70 ? 'var(--warning)' : 'var(--danger)'}; min-width: 50px;">${emp.rate}%</span>
+          </div>
+        </td>
+      </tr>`;
+    });
+    
+    html += '</tbody></table>';
+    return html;
+  }
+  
+  function printReport() {
+    const printContent = document.getElementById('reportPreview').innerHTML;
+    const originalContent = document.body.innerHTML;
+    
+    document.body.innerHTML = `
+      <div style="padding: 2rem; font-family:'Inter',sans-serif;">
+        <div style="text-align: center; margin-bottom: 2rem; border-bottom: 2px solid var(--primary); padding-bottom: 1rem;">
+          <h1 style="color: var(--primary); margin-bottom: 0.5rem;">NajMel HQ - Employee Report</h1>
+          <p style="color: var(--muted);">Generated on: ${new Date().toLocaleDateString()}</p>
+        </div>
+        ${printContent}
+        <div style="margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e2e8f0; text-align: center; color: var(--muted); font-size: 0.9rem;">
+          <p>© 2025 NajMel HQ Employee Management System</p>
+        </div>
+      </div>
+    `;
+    
+    window.print();
+    document.body.innerHTML = originalContent;
+    showPage('reportsPage');
+  }
+  
+  function getReportTypeName(type) {
+    const names = {
+      'attendance': 'Attendance Summary',
+      'department': 'Department Report',
+      'monthly': 'Monthly Attendance',
+      'employee': 'Employee Performance'
+    };
+    return names[type] || type;
+  }
+  
+  function formatDate(dateStr) {
+    if (!dateStr) return '';
+    const date = new Date(dateStr);
+    return date.toLocaleDateString('en-US', { 
+      weekday: 'short', 
+      year: 'numeric', 
+      month: 'short', 
+      day: 'numeric' 
+    });
+  }
+
+  // ==================== HELPER FUNCTIONS ====================
+  function escapeHtml(text){
+    if(!text) return '';
+    return String(text)
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;')
+      .replace(/'/g,"&#039;");
+  }
+  
+  function showNotification(message, type = 'info') {
+    // Remove any existing notifications
+    const existingNotification = document.querySelector('.notification');
+    if (existingNotification) {
+      existingNotification.remove();
+    }
+    
+    const notification = document.createElement('div');
+    notification.className = `notification fade-in`;
+    notification.style.cssText = `
+      position: fixed;
+      top: 90px;
+      right: 20px;
+      padding: 1rem 1.5rem;
+      border-radius: var(--radius-sm);
+      background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : type === 'warning' ? '#f59e0b' : '#3b82f6'};
+      color: white;
+      font-weight: 500;
+      box-shadow: var(--shadow-lg);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 300px;
+      max-width: 400px;
+    `;
+    
+    const icon = type === 'success' ? 'fa-check-circle' : 
+                 type === 'error' ? 'fa-exclamation-circle' : 
+                 type === 'warning' ? 'fa-exclamation-triangle' : 'fa-info-circle';
+    
+    notification.innerHTML = `
+      <i class="fas ${icon}" style="font-size: 1.2rem;"></i>
+      <span>${message}</span>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Auto remove after 3 seconds
+    setTimeout(() => {
+      if (notification.parentNode) {
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateX(100px)';
+        setTimeout(() => {
+          if (notification.parentNode) {
+            notification.remove();
+          }
+        }, 300);
+      }
+    }, 3000);
+  }
+
+  // ==================== INITIAL SETUP ====================
+  // Initialize page
+  document.getElementById('navLinks').classList.add('hidden');
+  
+  // Set default dates for reports
+  const today = new Date().toISOString().split('T')[0];
+  const oneMonthAgo = new Date();
+  oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+  const oneMonthAgoStr = oneMonthAgo.toISOString().split('T')[0];
+  
+  // Initialize date inputs
+  if(document.getElementById('reportStartDate')) {
+    document.getElementById('reportStartDate').value = oneMonthAgoStr;
+  }
+  if(document.getElementById('reportEndDate')) {
+    document.getElementById('reportEndDate').value = today;
+  }
+</script>
+</body>
+</html>
