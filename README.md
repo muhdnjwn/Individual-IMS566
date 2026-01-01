@@ -75,6 +75,6 @@ A modern, responsive web application for managing employees, attendance, and HR 
    - Use one of the admin accounts above
    - Click "Login to Dashboard"
 
-## 📁 File Structure
+
 
 
